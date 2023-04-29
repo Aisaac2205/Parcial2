@@ -1,9 +1,10 @@
-﻿//                                ADÁN ISAAC SARCEÑO FLORES
+//                                ADÁN ISAAC SARCEÑO FLORES
 //                                      0905-22-6380
 //                                  PARCIAL 2; SECCIÓN "B".
 int[,] tablero = new int[5, 5];
 int[,] aviones = new int[5, 5];
 int[,] minas = new int[5, 5];
+//Parte 1
 void asignar_posicion_aleatoria_aviones(int valor)
 {
     Random rnd = new Random();
@@ -16,6 +17,7 @@ void asignar_posicion_aleatoria_aviones(int valor)
     } while (tablero[fila, columna] != 0 || aviones[fila, columna] != 0);
     aviones[fila, columna] = valor;
 }
+//Parte 2
 void asignar_posicion_aleatoria_minas(int valor)
 {
     Random rnd = new Random();
@@ -28,7 +30,7 @@ void asignar_posicion_aleatoria_minas(int valor)
     } while (tablero[fila, columna] != 0 || minas[fila, columna] != 0);
     minas[fila, columna] = valor;
 }
-
+//Parte 3
 void paso1_crear_tablero()
 {
     for (int f = 0; f < tablero.GetLength(0); f++)
@@ -39,7 +41,7 @@ void paso1_crear_tablero()
         }
     }
 }
-void paso2_colocar_barcos()
+void paso2_colocar_naves()
 {
     asignar_posicion_aleatoria(1);
     asignar_posicion_aleatoria(1);
@@ -48,6 +50,7 @@ void paso2_colocar_barcos()
     asignar_posicion_aleatoria_aviones(2);
     asignar_posicion_aleatoria_minas(3);
 }
+//Parte 4
 void paso3_imprimir_tablero()
 {
     string caracter_imprimir = "";
@@ -101,6 +104,7 @@ void paso3_imprimir_tablero()
         Console.WriteLine();
     }
 }
+//Parte 5
 void paso4_ingreso_cordenadas()
 {
     int fila = 0, columna = 0;
@@ -109,10 +113,19 @@ void paso4_ingreso_cordenadas()
     Console.Clear();
     do
     {
-        Console.Write("Ingrese la fila: ");
-        fila = Convert.ToInt32(Console.ReadLine());
-        Console.Write("Ingrese la columna: ");
-        columna = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Ingrese el número de fila entre los números 0-4 : ");
+        while (!Int32.TryParse(Console.ReadLine(), out fila))
+        {
+            Console.WriteLine("Debe ingresar un número natural. Por favor, inténtelo de nuevo.");
+            Console.Write("Ingrese el número de fila entre los números 0-4: ");
+        }
+
+        Console.Write("Ingrese el número de la columna entre los números 0 - 4: ");
+        while (!Int32.TryParse(Console.ReadLine(), out columna))
+        {
+            Console.WriteLine("Debe ingresar un número natural. Por favor, inténtelo de nuevo.");
+            Console.Write("Ingrese el número de la columna entre los números 0-4: ");
+        }
 
         if (tablero[fila, columna] == 1)
         {
@@ -150,6 +163,7 @@ void paso4_ingreso_cordenadas()
         paso3_imprimir_tablero();
     } while (true);
 }
+//Parte 6
 void asignar_posicion_aleatoria(int valor)
 {
     Random rnd = new Random();
@@ -163,7 +177,7 @@ void asignar_posicion_aleatoria(int valor)
     tablero[fila, columna] = valor;
 }
 paso1_crear_tablero();
-paso2_colocar_barcos();
+paso2_colocar_naves();
 paso3_imprimir_tablero();
 paso4_ingreso_cordenadas();
 
